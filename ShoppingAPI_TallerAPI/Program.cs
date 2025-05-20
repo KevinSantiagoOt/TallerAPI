@@ -1,8 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using ShoppingAPI_TallerAPI.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+
+//esta línea de código la necesito para configurar la conexión a la BD
+builder.Services.AddDbContext<DataBaseContext>(opcions => opcions.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
